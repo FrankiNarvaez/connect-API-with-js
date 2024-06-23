@@ -56,7 +56,6 @@ async function getWeather(lat, lon) {
 
     const windElement = document.getElementById("wind");
     windElement.textContent = `${wind} km/h`;
-    console.log(weather)
 
     const precipitationElement = document.getElementById("precipitation");
     precipitationElement.textContent = `${precipitation} mm`;
