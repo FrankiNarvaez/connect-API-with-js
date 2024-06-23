@@ -1,22 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API map & weather</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxlO8ILdL4GvaE8wreaAke_-k3Al4V-IM&libraries=places&callback=initMap" async defer></script>
-    <script defer src="script.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxlO8ILdL4GvaE8wreaAke_-k3Al4V-IM&libraries=places&callback=initMap"
+        async defer></script>
+    <script defer src="./script.js"></script>
 </head>
+
 <body>
     <div class="container">
-        <h1>API map & weather</h1>
-        <input id="location-input" type="text" placeholder="Enter location">
-        <div id="map"></div>
-        <div id="weather-info">
-            <h2>Clima actual</h2>
-            <p id="temperature">Temperatura: -- °C</p>
+        <div class="weather-icon">
+            <img id="weather-img" src="./assets/main-icon.png" alt="weather icon">
         </div>
+        <h1>API map & wather</h1>
+        <div id="weather-info">
+            <div class="footer">
+                <div class="wind">
+                    <h2>Wind</h2>
+                    <p id="wind">TDB</p>
+                </div>
+                <span>|</span>
+                <div class="temperature">
+                    <h2>Temperature</h2>
+                    <p id="temperature">TDB</p>
+                </div>
+                <span>|</span>
+                <div class="precipitation">
+                    <h2>Precipitation</h2>
+                    <p id="precipitation">TDB</p>
+                </div>
+            </div>
+        </div>
+        <input id="location-input" type="text" placeholder="Enter the location">
+        <div id="map"></div>
     </div>
 </body>
 </html>

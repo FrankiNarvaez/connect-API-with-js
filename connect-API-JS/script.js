@@ -41,14 +41,42 @@ function initMap() {
 
 async function getWeather(lat, lon) {
     // Obtener el clima actual usando la API de Open Meteo
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m`);
-    console.log(lat)
-    console.log(lon)
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m`);
     const data = await response.json();
+    console.log(data)
+
+    const weather = data.current.weather_code;
+    const wind = data.current.wind_speed_10m;
+    const temperature = data.current.temperature_2m
+    const precipitation = data.current.precipitation;
     
     // Actualizar el contenido del elemento con la temperatura
     const temperatureElement = document.getElementById("temperature");
-    temperatureElement.textContent = `Temperatura: ${data.current.temperature_2m} °C`;
+    temperatureElement.textContent = `${temperature} °C`;
+
+    const windElement = document.getElementById("wind");
+    windElement.textContent = `${wind} km/h`;
+    console.log(weather)
+
+    const precipitationElement = document.getElementById("precipitation");
+    precipitationElement.textContent = `${precipitation} mm`;
+
+    const weatherElement = document.getElementById("weather-img");
+    // Mostrar la imagen correspondiente según el código del clima
+
+    if (temperature >= 30) {
+        weatherElement.src = "./assets/sol.png"; // Ruta del icono para clima soleado
+        weatherElement.alt = "Soleado";
+    } else if (temperature >= 25) {
+        weatherElement.src = "./assets/parcialmente.png"; // Ruta del icono para clima parcialmente nublado
+        weatherElement.alt = "Lluvioso";
+    } else if (temperature >= 10) {
+        weatherElement.src = "./assets/nublado.png"; // Ruta del icono para clima nublado
+        weatherElement.alt = "frio";
+    } else {
+        weatherElement.src = "./assets/frio.png"; // Ruta del icono para clima frío
+        weatherElement.alt = "Lluvia";
+    }
 }
 
 // Cargar el mapa cuando se carga la página
